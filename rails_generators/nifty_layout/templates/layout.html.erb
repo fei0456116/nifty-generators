@@ -1,22 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
   <head>
-    <title><%%= h(yield(:title) || "Untitled") %></title>
-    <%%= stylesheet_link_tag '<%= file_name %>' %>
-    <%%= yield(:head) %>
-  </head>
-  <body>
-    <div id="container">
-      <%%- flash.each do |name, msg| -%>
-        <%%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%%- end -%>
+	  <title>Blog</title>
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+	
+		<div class="container">
+			<div id="header" class='clearfix'>
+				<div id="site-title" class='column'>
+					<h1><a href="/">Kong Fu Master Blog</a></h1>
+					<h2>http://www.kongfumaster.com</h2>
+				</div>
 
-      <%%- if show_title? -%>
-        <h1><%%=h yield(:title) %></h1>
-      <%%- end -%>
+     		<div id="topnav" class='clear'>
+     			<ul class="nav clearfix">
+						<li><a href="/">Home</a></li>
+						<li><a href="/">Post</a></li>
+						<li><a href="/posts.rss">Rss</a></li>
+						<li><a href="/">About</a></li>
+					</ul>
+     		</div>
 
-      <%%= yield %>
-    </div>
-  </body>
+				<div id="search">
+					<form id="searchform" action="">
+						<input type="text" class="search" name="s" id="s" size="40"> 
+						<input type="submit" name="submit" value="Search">
+					</form>
+				</div>      
+				<div class="sns">
+					<a href="#"><img src="/assets/rss.png" alt=""></a>
+					<a href="#"><img src="/assets/facebook.png" alt=""></a>
+					<a href="#"><img src="/assets/twitter.png" alt=""></a>
+				</div>
+			</div>
+			
+			<%= yield %>
+		</div>
+		
+		<div id="site-footer">
+			
+		</div>
+		
+	</body>
 </html>
